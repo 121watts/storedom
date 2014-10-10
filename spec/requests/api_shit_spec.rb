@@ -17,4 +17,12 @@ describe 'Our API' do
     expect(item.name).to eq 'Hello'
     expect(item.description).to eq 'Go away'
   end
+
+  it 'can show an item' do
+    post '/api/v1/items.json', item: { name: 'Hello', description: 'Go away' }
+    get '/api/v1/items/1.json'
+
+    expect(response.status).to eq 201
+  end
+
 end

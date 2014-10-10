@@ -1,5 +1,6 @@
-class Api::V1::ItemsController < ApplicationController
+class Api::V1::ItemsController < Api::Controller
   respond_to :json
+  before_action :is_admin?, only: [:show, :create]
 
   def index
     respond_with Item.all
@@ -13,6 +14,10 @@ class Api::V1::ItemsController < ApplicationController
     else
       puts "Fuck you"
     end
+  end
+
+  def show
+    respond_with Item.find(params[:id])
   end
 
   private
