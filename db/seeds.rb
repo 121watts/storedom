@@ -15,17 +15,6 @@ class Seed
     end
   end
 
-  def generate_items
-    500.times do |i|
-      item = Item.create!(
-        name: Faker::Commerce.product_name,
-        description: Faker::Lorem.paragraph,
-        image_url: "http://robohash.org/#{i}.png?set=set1&size=200x200"
-        )
-      puts "Item #{i}: #{item.name} created!"
-    end
-  end
-
   def generate_orders
     100.times do |i|
       user  = User.find(Random.new.rand(1..50))
@@ -47,3 +36,7 @@ class Seed
 end
 
 Seed.new
+
+Seed::Item.generate(500)
+Seed::Users.generate(500)
+Seed::Orders.generate(100)
